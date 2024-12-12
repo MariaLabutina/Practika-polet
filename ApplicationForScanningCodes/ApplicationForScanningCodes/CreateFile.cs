@@ -48,11 +48,12 @@ namespace ApplicationForScanningCodes
         {
             if (path.Length != 0 && textBoxName.Text.Length != 0)
             {
-                DataBase dataBase = new DataBase();
-                dataBase.AskPath(Path.Combine(path, $"{textBoxName.Text}.xlsx"));
-                if (!File.Exists(dataBase.ReturnPath()))
+                
+                DataBase.path=Path.Combine(path, $"{textBoxName.Text}.xlsx");
+                DataBase.name = textBoxName.Text;
+                if (!File.Exists(DataBase.path))
                 {
-                    File.Create(dataBase.ReturnPath());
+                    File.Create(DataBase.path);
                     this.Close();
                 }
                

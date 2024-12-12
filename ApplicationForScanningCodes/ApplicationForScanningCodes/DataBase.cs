@@ -6,17 +6,10 @@ using System.Threading.Tasks;
 
 namespace ApplicationForScanningCodes
 {
-    class DataBase
+    static class DataBase
     {
-        private string path;
-        public void AskPath(string pathFile)
-        {
-            path = pathFile;
-        }
-        public string ReturnPath()
-        {
-            return path;
-        }
+        public static string path;
+        public static string name;
     }
    
 }

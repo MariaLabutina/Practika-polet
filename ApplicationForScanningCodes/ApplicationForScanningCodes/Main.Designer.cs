@@ -80,6 +80,7 @@ namespace ApplicationForScanningCodes
             this.buttonScan.TabIndex = 3;
             this.buttonScan.Text = "Сканировать";
             this.buttonScan.UseVisualStyleBackColor = true;
+            this.buttonScan.Click += new System.EventHandler(this.buttonScan_Click);
             // 
             // buttonSave
             // 
@@ -87,8 +88,9 @@ namespace ApplicationForScanningCodes
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(189, 44);
             this.buttonSave.TabIndex = 4;
-            this.buttonSave.Text = "Сохранить";
+            this.buttonSave.Text = "Сохранить и закрыть";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // Main
             // 
