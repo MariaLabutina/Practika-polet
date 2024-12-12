@@ -56,8 +56,7 @@ namespace ApplicationForScanningCodes
                 Excel.Application ex = new Microsoft.Office.Interop.Excel.Application();
                 ex.SheetsInNewWorkbook = 1;
                 Excel.Workbook workBook = ex.Workbooks.Add();
-                
-               workBook.SaveAs(DataBase.path);//посмотреть на что можно заменить и как лучше с ним работать
+                workBook.SaveAs(DataBase.path);//посмотреть на что можно заменить и как лучше с ним работать
                 
                 ex.Quit();
                 Marshal.ReleaseComObject(workBook);

@@ -76,19 +76,26 @@ namespace ApplicationForScanningCodes
         private void SaveCode(string text)
         {
             listBoxCodes.Items.Add(text);
-            //using (FileStream fstream = new FileStream(DataBase.path, FileMode.Open))
-            //{
-            //    Excel.Application excelApp = new Excel.Application();
-            //    Excel.Workbook workbook = excelApp.Workbooks.Open(DataBase.path);
-            //    Excel.Sheets sheet = workbook.Sheets;
-            //    sheet.Item[1].Range[$"A{count}"].Value = "Пример №2";
+            using (FileStream fstream = new FileStream(DataBase.path, FileMode.Open))
+            {
+                Excel.Application excelApp = new Excel.Application();
+                excelApp.DisplayAlerts = false;
+                Excel.Workbook workbook = excelApp.Workbooks.Open(DataBase.path, Type.Missing, false, Type.Missing,
+                "", "", true, Type.Missing, Type.Missing, true, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing);
 
-            //  //  excelApp.Application.ActiveWorkbook.SaveAs(DataBase.path);
+                Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Worksheets.get_Item(1);
+                worksheet.Cells[1, count] = "20";
+                workbook.SaveAs(DataBase.path, Excel.XlFileFormat.xlOpenXMLWorkbook, null, null, false, false, Excel.XlSaveAsAccessMode.xlShared, false, false, null, null, null);
+                
 
-            //    excelApp.Quit();
-            //    Marshal.ReleaseComObject(workbook);
-            //    Marshal.ReleaseComObject(sheet);
-            //}
+
+
+
+                excelApp.Quit();
+                Marshal.ReleaseComObject(workbook);
+                Marshal.ReleaseComObject(worksheet);
+            }
         }
     }
 }
