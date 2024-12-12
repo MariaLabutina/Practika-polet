@@ -61,6 +61,9 @@ namespace ApplicationForScanningCodes
 
         private void Start()
         {
+            DataBase.path = "";
+            DataBase.name = "";
+            labelName.Text = "";
             count = 1;
             buttonCreate.Enabled = true;
             buttonSave.Enabled = false;
@@ -70,32 +73,28 @@ namespace ApplicationForScanningCodes
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-
+            Start();
         }
 
         private void SaveCode(string text)
         {
             listBoxCodes.Items.Add(text);
-            using (FileStream fstream = new FileStream(DataBase.path, FileMode.Open))
-            {
+            
                 Excel.Application excelApp = new Excel.Application();
+        
                 excelApp.DisplayAlerts = false;
                 Excel.Workbook workbook = excelApp.Workbooks.Open(DataBase.path, Type.Missing, false, Type.Missing,
-                "", "", true, Type.Missing, Type.Missing, true, Type.Missing,
+                Type.Missing, Type.Missing, false, Type.Missing, Type.Missing, true, Type.Missing,
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing);
 
                 Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Worksheets.get_Item(1);
-                worksheet.Cells[1, count] = "20";
+                worksheet.Range[$"A{count}"].Value = "100101";
                 workbook.SaveAs(DataBase.path, Excel.XlFileFormat.xlOpenXMLWorkbook, null, null, false, false, Excel.XlSaveAsAccessMode.xlShared, false, false, null, null, null);
-                
-
-
-
 
                 excelApp.Quit();
                 Marshal.ReleaseComObject(workbook);
                 Marshal.ReleaseComObject(worksheet);
-            }
+                count += 1;
         }
     }
 }
