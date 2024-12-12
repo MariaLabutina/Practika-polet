@@ -9,3 +9,6 @@ C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\obj\
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\obj\Debug\ApplicationForScanningCodes.exe
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\obj\Debug\ApplicationForScanningCodes.pdb
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\obj\Debug\ApplicationForScanningCodes.CreateFile.resources
+C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\Aspose.Cells.dll
+C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\Aspose.Cells.xml
+C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\obj\Debug\ApplicationForScanningCodes.csproj.CopyComplete

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Aspose.Cells;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +24,11 @@ namespace ApplicationForScanningCodes
             buttonPath.ForeColor = Color.FromArgb(234, 235, 237);
             textBoxName.BackColor = Color.FromArgb(234, 235, 237);
         }
+        private string path;
 
         private void CreateFile_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void buttonPath_Click(object sender, EventArgs e)
@@ -36,7 +39,23 @@ namespace ApplicationForScanningCodes
             if (result == DialogResult.OK)
             {
                 // запишем в переменную путь к папке
-                labelPath.Text = folderBrowserDialogFile.SelectedPath;
+                path = folderBrowserDialogFile.SelectedPath;
+                labelPath.Text = path;
+            }
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            if (path.Length != 0 && textBoxName.Text.Length != 0)
+            {
+                DataBase dataBase = new DataBase();
+                dataBase.AskPath(Path.Combine(path, $"{textBoxName.Text}.xlsx"));
+                if (!File.Exists(dataBase.ReturnPath()))
+                {
+                    File.Create(dataBase.ReturnPath());
+                    this.Close();
+                }
+               
             }
         }
     }
