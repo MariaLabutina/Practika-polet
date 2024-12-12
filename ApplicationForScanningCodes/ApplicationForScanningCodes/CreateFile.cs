@@ -1,14 +1,15 @@
-﻿using Aspose.Cells;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ApplicationForScanningCodes
 {
@@ -24,7 +25,7 @@ namespace ApplicationForScanningCodes
             buttonPath.ForeColor = Color.FromArgb(234, 235, 237);
             textBoxName.BackColor = Color.FromArgb(234, 235, 237);
         }
-        private string path;
+        private string path = @"C:\Документы для практики";
 
         private void CreateFile_Load(object sender, EventArgs e)
         {
@@ -51,11 +52,16 @@ namespace ApplicationForScanningCodes
                 
                 DataBase.path=Path.Combine(path, $"{textBoxName.Text}.xlsx");
                 DataBase.name = textBoxName.Text;
-                if (!File.Exists(DataBase.path))
-                {
-                    File.Create(DataBase.path);
-                    this.Close();
-                }
+
+                Excel.Application ex = new Microsoft.Office.Interop.Excel.Application();
+                ex.SheetsInNewWorkbook = 1;
+                Excel.Workbook workBook = ex.Workbooks.Add();
+                
+               workBook.SaveAs(DataBase.path);//посмотреть на что можно заменить и как лучше с ним работать
+                
+                ex.Quit();
+                Marshal.ReleaseComObject(workBook);
+                this.Close();
                
             }
         }

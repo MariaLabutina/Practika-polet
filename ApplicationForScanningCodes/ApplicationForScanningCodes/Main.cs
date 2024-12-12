@@ -1,14 +1,15 @@
-﻿using Aspose.Cells;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ApplicationForScanningCodes
 {
@@ -54,8 +55,8 @@ namespace ApplicationForScanningCodes
 
         private void buttonScan_Click(object sender, EventArgs e)
         {
-            
-            listBoxCodes.Items.Add("1");
+            string text = "100111";
+            SaveCode(text);
         }
 
         private void Start()
@@ -74,14 +75,20 @@ namespace ApplicationForScanningCodes
 
         private void SaveCode(string text)
         {
-            using (FileStream fstream = new FileStream(DataBase.path, FileMode.Open))
-            {
-                Workbook wb = new Workbook(fstream);
-                Worksheet sheet = wb.Worksheets[0];
-                Cell cell = sheet.Cells[$"A{count}"];
-                cell.PutValue(text);
-                wb.Save(DataBase.path, SaveFormat.Xlsx);
-            }
+            listBoxCodes.Items.Add(text);
+            //using (FileStream fstream = new FileStream(DataBase.path, FileMode.Open))
+            //{
+            //    Excel.Application excelApp = new Excel.Application();
+            //    Excel.Workbook workbook = excelApp.Workbooks.Open(DataBase.path);
+            //    Excel.Sheets sheet = workbook.Sheets;
+            //    sheet.Item[1].Range[$"A{count}"].Value = "Пример №2";
+
+            //  //  excelApp.Application.ActiveWorkbook.SaveAs(DataBase.path);
+
+            //    excelApp.Quit();
+            //    Marshal.ReleaseComObject(workbook);
+            //    Marshal.ReleaseComObject(sheet);
+            //}
         }
     }
 }
