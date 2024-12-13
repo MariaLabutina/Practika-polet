@@ -25,12 +25,12 @@ namespace ApplicationForScanningCodes
             buttonPath.ForeColor = Color.FromArgb(234, 235, 237);
             textBoxName.BackColor = Color.FromArgb(234, 235, 237);
         }
-        private string path = @"C:\Документы для практики";
-        //  private string path = @"C:\Users\Public\Documents";
+        //private string path = @"C:\Документы для практики";
+        private string path = @"C:\Users\Public\Documents";
 
         private void CreateFile_Load(object sender, EventArgs e)
         {
-
+            labelPath.Text = path;
         }
 
         private void buttonPath_Click(object sender, EventArgs e)
