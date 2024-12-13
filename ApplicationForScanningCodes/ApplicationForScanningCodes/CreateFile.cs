@@ -26,16 +26,17 @@ namespace ApplicationForScanningCodes
             textBoxName.BackColor = Color.FromArgb(234, 235, 237);
         }
         private string path = @"C:\Документы для практики";
+        //  private string path = @"C:\Users\Public\Documents";
 
         private void CreateFile_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void buttonPath_Click(object sender, EventArgs e)
         {
-           
-         DialogResult result = folderBrowserDialogFile.ShowDialog();
+
+            DialogResult result = folderBrowserDialogFile.ShowDialog();
             // если папка выбрана и нажата клавиша `OK` — значит можно получить путь к папке
             if (result == DialogResult.OK)
             {
@@ -49,19 +50,33 @@ namespace ApplicationForScanningCodes
         {
             if (path.Length != 0 && textBoxName.Text.Length != 0)
             {
-                
-                DataBase.path=Path.Combine(path, $"{textBoxName.Text}.xlsx");
+
+                DataBase.path = Path.Combine(path, $"{textBoxName.Text}.xlsx");
                 DataBase.name = textBoxName.Text;
 
-                Excel.Application ex = new Microsoft.Office.Interop.Excel.Application();
-                ex.SheetsInNewWorkbook = 1;
-                Excel.Workbook workBook = ex.Workbooks.Add();
-                workBook.SaveAs(DataBase.path);//посмотреть на что можно заменить и как лучше с ним работать
-                
-                ex.Quit();
-                Marshal.ReleaseComObject(workBook);
-                this.Close();
-               
+                if (File.Exists(DataBase.path))
+                {
+                    MessageBox.Show("Файл с таким именем уже существует!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    Excel.Application ex = new Microsoft.Office.Interop.Excel.Application();
+                    ex.SheetsInNewWorkbook = 1;
+                    Excel.Workbook workBook = ex.Workbooks.Add();
+                    Excel.Worksheet worksheet = (Excel.Worksheet)workBook.Worksheets.get_Item(1);
+                    worksheet.Range[$"A1"].Value = "QR-код";
+                    worksheet.Range[$"B1"].Value = "Подразделение";
+                    worksheet.Range[$"C1"].Value = "Дата и время сканирования";
+                    Excel.Range range2 = worksheet.get_Range("A1", "C1");
+                    range2.EntireColumn.AutoFit();
+                    workBook.SaveAs(DataBase.path);
+
+                    ex.Quit();
+                    Marshal.ReleaseComObject(workBook);
+                    Marshal.ReleaseComObject(worksheet);
+                    Marshal.ReleaseComObject(range2);
+                    this.Close();
+                }
             }
         }
     }

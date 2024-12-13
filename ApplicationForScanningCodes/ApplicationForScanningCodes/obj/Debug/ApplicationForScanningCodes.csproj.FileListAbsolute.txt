@@ -18,8 +18,6 @@ C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\arm\libSkiaSharp.so
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\arm64\libSkiaSharp.so
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\musl-x64\libSkiaSharp.so
-C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\BarcodeLib.Barcode.WinForms.dll
-C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\BarcodeStandard.dll
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\SkiaSharp.dll
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\System.Buffers.dll
@@ -44,3 +42,4 @@ C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\System.ValueTuple.xml
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\obj\Debug\ApplicationForScanningCodes.csproj.CopyComplete
+C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\obj\Debug\ApplicationForScanningCodes.OpenFile.resources
