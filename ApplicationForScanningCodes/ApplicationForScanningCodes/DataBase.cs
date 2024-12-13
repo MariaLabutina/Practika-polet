@@ -10,6 +10,7 @@ namespace ApplicationForScanningCodes
     {
         public static string path;
         public static string name;
+        public static List<string> items = new List<string>();
     }
    
 }

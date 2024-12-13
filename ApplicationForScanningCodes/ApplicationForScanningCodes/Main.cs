@@ -41,7 +41,7 @@ namespace ApplicationForScanningCodes
             Start();
         }
 
-
+       
         //создание файла
         private void buttonCreate_Click(object sender, EventArgs e)
         {
@@ -91,6 +91,7 @@ namespace ApplicationForScanningCodes
             buttonSave.Enabled = false;
             textBoxCode.Enabled = false;
             listBoxCodes.Items.Clear();
+            DataBase.items.Clear();
         }
 
 
@@ -107,6 +108,7 @@ namespace ApplicationForScanningCodes
         private void SaveCode(string text)
         {
             listBoxCodes.Items.Add(text);
+            DataBase.items.Add(text);
             
                 Excel.Application excelApp = new Excel.Application();
         
@@ -136,7 +138,16 @@ namespace ApplicationForScanningCodes
                 
                 if (text[text.Length - 1] == '\n')
                 {
-                    SaveCode(textBoxCode.Text.Remove(textBoxCode.Text.Length-1));
+                    text = text.Remove(text.Length - 1);
+                    if (DataBase.items.Contains(text))
+                    {
+                        textBoxCode.Text = "";
+                        MessageBox.Show("Повторное сканирование!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        SaveCode(text);
+                    }
                     textBoxCode.Text = "";
                     textBoxCode.Focus();
                 }

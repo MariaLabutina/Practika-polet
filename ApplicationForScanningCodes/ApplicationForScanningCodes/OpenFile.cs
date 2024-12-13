@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ApplicationForScanningCodes
 {
@@ -43,12 +44,29 @@ namespace ApplicationForScanningCodes
         {
             if (DataBase.path != "")
             {
-            this.Close();
+                LoadListCodes();
+                this.Close();
             }
             else
             {
                 MessageBox.Show("Файл не выбран!", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void LoadListCodes()
+        {
+            Excel.Application excelApp = new Excel.Application();
+
+            excelApp.DisplayAlerts = false;
+            Excel.Workbook workbook = excelApp.Workbooks.Open(DataBase.path, Type.Missing, false, Type.Missing, Type.Missing, Type.Missing, false, Type.Missing, Type.Missing, true, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            int count = workbook.Worksheets[1].Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Row;
+            Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Worksheets.get_Item(1);
+
+            for (int i = 2; i <= count; i++)
+            {
+                DataBase.items.Add(worksheet.Cells[i, 1].Text.ToString());
+            }
+
         }
     }
 }
