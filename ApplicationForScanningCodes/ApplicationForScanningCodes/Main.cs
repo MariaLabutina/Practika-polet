@@ -106,6 +106,7 @@ namespace ApplicationForScanningCodes
             if (textBoxCode.Text != "")
             {
                 string text = textBoxCode.Text;
+                
                 if (text[text.Length - 1] == '\n')
                 {
                     SaveCode(textBoxCode.Text);
