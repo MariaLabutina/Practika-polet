@@ -23,8 +23,8 @@ namespace ApplicationForScanningCodes
             buttonCreate.ForeColor = Color.FromArgb(234, 235, 237);
             buttonSave.BackColor = Color.FromArgb(0, 105, 137);
             buttonSave.ForeColor = Color.FromArgb(234, 235, 237);
-            buttonScan.BackColor = Color.FromArgb(0, 105, 137);
-            buttonScan.ForeColor = Color.FromArgb(234, 235, 237);
+            //buttonScan.BackColor = Color.FromArgb(0, 105, 137);
+            //buttonScan.ForeColor = Color.FromArgb(234, 235, 237);
             listBoxCodes.BackColor = Color.FromArgb(234, 235, 237);
 
         }
@@ -39,25 +39,25 @@ namespace ApplicationForScanningCodes
         {
             CreateFile createFile = new CreateFile();
             createFile.Show();
+            this.Hide();
             createFile.FormClosed += CreateFile_FormClosed;
         }
 
         private void CreateFile_FormClosed(object sender, FormClosedEventArgs e)
         {
+            this.Show();
             labelName.Text = DataBase.name;
             if (DataBase.path.Length != 0)
             {
-                buttonScan.Enabled = true;
+                textBoxCode.Enabled = true;
                 buttonSave.Enabled = true;
                 buttonCreate.Enabled = false;
+                timerScan.Start();
+                textBoxCode.Focus();
             }
         }
+        
 
-        private void buttonScan_Click(object sender, EventArgs e)
-        {
-            string text = "100111";
-            SaveCode(text);
-        }
 
         private void Start()
         {
@@ -67,7 +67,8 @@ namespace ApplicationForScanningCodes
             count = 1;
             buttonCreate.Enabled = true;
             buttonSave.Enabled = false;
-            buttonScan.Enabled = false;
+            textBoxCode.Enabled = false;
+            timerScan.Stop();
             listBoxCodes.Items.Clear();
         }
 
@@ -88,7 +89,7 @@ namespace ApplicationForScanningCodes
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing);
 
                 Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Worksheets.get_Item(1);
-                worksheet.Range[$"A{count}"].Value = "100101";
+                worksheet.Range[$"A{count}"].Value = text;
                 workbook.SaveAs(DataBase.path, Excel.XlFileFormat.xlOpenXMLWorkbook, null, null, false, false, Excel.XlSaveAsAccessMode.xlShared, false, false, null, null, null);
 
                 excelApp.Quit();
@@ -96,5 +97,29 @@ namespace ApplicationForScanningCodes
                 Marshal.ReleaseComObject(worksheet);
                 count += 1;
         }
+
+
+
+        private void Scan()
+        {
+
+            if (textBoxCode.Text != "")
+            {
+                string text = textBoxCode.Text;
+                if (text[text.Length - 1] == '\n')
+                {
+                    SaveCode(textBoxCode.Text);
+                    textBoxCode.Text = "";
+                    textBoxCode.Focus();
+                }
+            }
+            
+        }
+
+        private void timerScan_Tick(object sender, EventArgs e)
+        {
+            Scan();
+        }
+
     }
 }

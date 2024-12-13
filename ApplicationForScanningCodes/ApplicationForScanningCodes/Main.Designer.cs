@@ -29,12 +29,14 @@ namespace ApplicationForScanningCodes
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.listBoxCodes = new System.Windows.Forms.ListBox();
             this.labelName = new System.Windows.Forms.Label();
             this.buttonCreate = new System.Windows.Forms.Button();
-            this.buttonScan = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.textBoxCode = new System.Windows.Forms.TextBox();
+            this.timerScan = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // listBoxCodes
@@ -64,7 +66,7 @@ namespace ApplicationForScanningCodes
             // 
             // buttonCreate
             // 
-            this.buttonCreate.Location = new System.Drawing.Point(355, 69);
+            this.buttonCreate.Location = new System.Drawing.Point(355, 42);
             this.buttonCreate.Name = "buttonCreate";
             this.buttonCreate.Size = new System.Drawing.Size(189, 44);
             this.buttonCreate.TabIndex = 2;
@@ -72,19 +74,9 @@ namespace ApplicationForScanningCodes
             this.buttonCreate.UseVisualStyleBackColor = true;
             this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
             // 
-            // buttonScan
-            // 
-            this.buttonScan.Location = new System.Drawing.Point(355, 179);
-            this.buttonScan.Name = "buttonScan";
-            this.buttonScan.Size = new System.Drawing.Size(189, 44);
-            this.buttonScan.TabIndex = 3;
-            this.buttonScan.Text = "Сканировать";
-            this.buttonScan.UseVisualStyleBackColor = true;
-            this.buttonScan.Click += new System.EventHandler(this.buttonScan_Click);
-            // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(355, 299);
+            this.buttonSave.Location = new System.Drawing.Point(355, 324);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(189, 44);
             this.buttonSave.TabIndex = 4;
@@ -92,14 +84,26 @@ namespace ApplicationForScanningCodes
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
+            // textBoxCode
+            // 
+            this.textBoxCode.Location = new System.Drawing.Point(355, 184);
+            this.textBoxCode.Multiline = true;
+            this.textBoxCode.Name = "textBoxCode";
+            this.textBoxCode.Size = new System.Drawing.Size(189, 45);
+            this.textBoxCode.TabIndex = 5;
+            // 
+            // timerScan
+            // 
+            this.timerScan.Tick += new System.EventHandler(this.timerScan_Tick);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(556, 380);
+            this.ClientSize = new System.Drawing.Size(587, 399);
+            this.Controls.Add(this.textBoxCode);
             this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.buttonScan);
             this.Controls.Add(this.buttonCreate);
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.listBoxCodes);
@@ -111,6 +115,7 @@ namespace ApplicationForScanningCodes
             this.Text = "Приложение для сканирования";
             this.Load += new System.EventHandler(this.Main_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -119,8 +124,9 @@ namespace ApplicationForScanningCodes
         private System.Windows.Forms.ListBox listBoxCodes;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Button buttonCreate;
-        private System.Windows.Forms.Button buttonScan;
         private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.TextBox textBoxCode;
+        private System.Windows.Forms.Timer timerScan;
     }
 }
 
