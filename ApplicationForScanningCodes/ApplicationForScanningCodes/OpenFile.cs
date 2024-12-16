@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -67,6 +68,9 @@ namespace ApplicationForScanningCodes
                 DataBase.items.Add(worksheet.Cells[i, 1].Text.ToString());
             }
 
+            excelApp.Quit();
+            Marshal.ReleaseComObject(workbook);
+            Marshal.ReleaseComObject(worksheet);
         }
     }
 }

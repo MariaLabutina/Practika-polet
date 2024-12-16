@@ -43,3 +43,4 @@ C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\System.ValueTuple.xml
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\obj\Debug\ApplicationForScanningCodes.csproj.CopyComplete
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\obj\Debug\ApplicationForScanningCodes.OpenFile.resources
+C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\obj\Debug\ApplicationForScanningCodes.Comparison.resources

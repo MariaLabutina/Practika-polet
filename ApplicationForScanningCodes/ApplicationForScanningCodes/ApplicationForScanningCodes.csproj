@@ -82,6 +82,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comparison.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comparison.Designer.cs">
+      <DependentUpon>Comparison.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateFile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +109,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Comparison.resx">
+      <DependentUpon>Comparison.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateFile.resx">
       <DependentUpon>CreateFile.cs</DependentUpon>
     </EmbeddedResource>

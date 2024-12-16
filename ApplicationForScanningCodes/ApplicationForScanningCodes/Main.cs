@@ -32,6 +32,8 @@ namespace ApplicationForScanningCodes
             buttonStopScan.ForeColor = Color.FromArgb(234, 235, 237);
             buttonDeleteItem.BackColor = Color.FromArgb(0, 105, 137);
             buttonDeleteItem.ForeColor = Color.FromArgb(234, 235, 237);
+            buttonSearchCodes.BackColor = Color.FromArgb(0, 105, 137);
+            buttonSearchCodes.ForeColor = Color.FromArgb(234, 235, 237);
             comboBox1.SelectedIndex = 0;
 
         }
@@ -83,6 +85,7 @@ namespace ApplicationForScanningCodes
             buttonStartScan.Enabled = true;
             buttonStopScan.Enabled = false;
             buttonDeleteItem.Enabled = true;
+            buttonSearchCodes.Enabled = false;
             comboBox1.Enabled = true;
 
         }
@@ -99,6 +102,7 @@ namespace ApplicationForScanningCodes
             buttonStartScan.Enabled = false;
             buttonStopScan.Enabled = false;
             buttonDeleteItem.Enabled = false;
+            buttonSearchCodes.Enabled = true;
             comboBox1.Enabled = false;
             buttonSave.Enabled = false;
             textBoxCode.Enabled = false;
@@ -113,6 +117,7 @@ namespace ApplicationForScanningCodes
             Start();
             comboBox1.SelectedIndex = 0;
             buttonDeleteItem.Enabled = false;
+            buttonSearchCodes.Enabled = true;
             textBoxCode.Text = "";
         }
 
@@ -194,6 +199,7 @@ namespace ApplicationForScanningCodes
                 buttonStartScan.Enabled = false;
                 buttonStopScan.Enabled = true;
                 listBoxCodes.Enabled = false;
+                buttonSave.Enabled = false;
                 buttonDeleteItem.Enabled = false;
 
             }
@@ -212,6 +218,7 @@ namespace ApplicationForScanningCodes
             buttonSave.Enabled = true;
             listBoxCodes.Enabled = true;
             buttonDeleteItem.Enabled = true;
+            buttonSearchCodes.Enabled = false;
             comboBox1.Enabled = false;
         }
 
@@ -278,6 +285,19 @@ namespace ApplicationForScanningCodes
             {
                 MessageBox.Show("Элемент не выбран!\nВыберите элемент, который хотите удалить!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void buttonSearchCodes_Click(object sender, EventArgs e)
+        {
+            Comparison comparison = new Comparison();
+            comparison.Show();
+            this.Hide();
+            comparison.FormClosed += Comparison_FormClosed;
+        }
+
+        private void Comparison_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Show();
         }
     }
 }
