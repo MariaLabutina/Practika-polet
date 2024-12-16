@@ -42,6 +42,7 @@ namespace ApplicationForScanningCodes
             this.buttonStopScan = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.buttonDeleteItem = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBoxCodes
@@ -150,12 +151,23 @@ namespace ApplicationForScanningCodes
             this.comboBox1.Size = new System.Drawing.Size(224, 31);
             this.comboBox1.TabIndex = 10;
             // 
+            // buttonDeleteItem
+            // 
+            this.buttonDeleteItem.Location = new System.Drawing.Point(12, 379);
+            this.buttonDeleteItem.Name = "buttonDeleteItem";
+            this.buttonDeleteItem.Size = new System.Drawing.Size(320, 44);
+            this.buttonDeleteItem.TabIndex = 11;
+            this.buttonDeleteItem.Text = "Удалить выбранный элемент";
+            this.buttonDeleteItem.UseVisualStyleBackColor = true;
+            this.buttonDeleteItem.Click += new System.EventHandler(this.buttonDeleteItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(851, 399);
+            this.ClientSize = new System.Drawing.Size(851, 435);
+            this.Controls.Add(this.buttonDeleteItem);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonStopScan);
@@ -191,6 +203,7 @@ namespace ApplicationForScanningCodes
         private System.Windows.Forms.Button buttonStopScan;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button buttonDeleteItem;
     }
 }
 
