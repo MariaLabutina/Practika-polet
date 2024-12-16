@@ -193,7 +193,8 @@ namespace ApplicationForScanningCodes
                 textBoxCode.Focus();
                 buttonStartScan.Enabled = false;
                 buttonStopScan.Enabled = true;
-                buttonDeleteItem.Enabled = true;
+                listBoxCodes.Enabled = false;
+                buttonDeleteItem.Enabled = false;
 
             }
             else
@@ -209,6 +210,7 @@ namespace ApplicationForScanningCodes
             buttonStartScan.Enabled = false;
             buttonStopScan.Enabled = false;
             buttonSave.Enabled = true;
+            listBoxCodes.Enabled = true;
             buttonDeleteItem.Enabled = true;
             comboBox1.Enabled = false;
         }
