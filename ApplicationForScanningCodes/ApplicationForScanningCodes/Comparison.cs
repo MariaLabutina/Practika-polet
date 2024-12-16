@@ -26,11 +26,12 @@ namespace ApplicationForScanningCodes
             buttonSearchFile2.ForeColor = Color.FromArgb(234, 235, 237);
         }
 
-
+        private int count = 0;
         private void Comparison_Load(object sender, EventArgs e)
         {
             openFileDialogFile1.Filter = "Файлы Excel(*.xlsx)|*.xlsx|All files(*.*)|*.*";
-            openFileDialogFile2.Filter = "Файлы Excel(*.xlsx)|*.xlsx|All files(*.*)|*.*";
+            openFileDialogFile2.Filter = "Файлы Excel(*.xls)|*.xls|Файлы Excel(*.xlsx)|*.xlsx|All files(*.*)|*.*";
+            DataBase.codes.Clear();
         }
         private void buttonSearchFile1_Click(object sender, EventArgs e)
         {
@@ -38,6 +39,7 @@ namespace ApplicationForScanningCodes
                 return;
             // получаем выбранный файл
             labelPath1.Text = openFileDialogFile1.FileName;
+            DataBase.codes.Clear();
             LoadListCodes();
         }
 
@@ -51,6 +53,7 @@ namespace ApplicationForScanningCodes
 
         private void LoadListCodes()
         {
+            
             Excel.Application excelApp = new Excel.Application();
 
             excelApp.DisplayAlerts = false;
@@ -60,9 +63,7 @@ namespace ApplicationForScanningCodes
 
             for (int i = 2; i <= count; i++)
             {
-                DataBase.codes.Add(new List<string>());
-                DataBase.codes[i-2].Add(worksheet.Cells[i, 1].Text.ToString());
-                DataBase.codes[i-2].Add(worksheet.Cells[i, 2].Text.ToString());
+                DataBase.codes.Add(worksheet.Cells[i, 1].Text.ToString());
             }
 
             excelApp.Quit();
@@ -72,65 +73,71 @@ namespace ApplicationForScanningCodes
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < DataBase.codes.Count; i++)
+            string text = "";
+            if (labelPath1.Text != "...." && labelPath2.Text != "....")
             {
-                FindCode1(DataBase.codes[i][0], DataBase.codes[i][1]);
-                //FindCode(DataBase.codes[i][0]);
+                MessageBox.Show("Сравнение запущено!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                for (int i = 0; i < DataBase.codes.Count; i++)
+                {
+                    text = RemoveR(DataBase.codes[i]);
+                    FindCode(text);
+                }
+
+                MessageBox.Show($"Сравнение успешно завершено!\n Найдено {count} из {DataBase.codes.Count} !", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DataBase.codes.Clear();
+                count = 0;
             }
-            MessageBox.Show("Сравнение успешно завершено!", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else if (labelPath1.Text != "...." && labelPath2.Text == "....")
+            {
+                MessageBox.Show("Отсутствует путь файла, с которым происходит сравнение!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (labelPath2.Text != "...." && labelPath1.Text == "....")
+            {
+                MessageBox.Show("Отсутствует путь файла, с кодами для сравнения!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                MessageBox.Show("Отсутствуют выбранные пути файлов!", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
         }
 
-
-        //private void FindCode(string textToFind)
-        //{
-        //    Excel.Application excelApp = new Excel.Application(); //Excel                    
-        //    Excel.Range Rng; //диапазон ячеек
-
-        //    Excel.Workbook workbook = excelApp.Workbooks.Open(labelPath2.Text);
-        //    Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Worksheets.get_Item(1);
-
-        //    Rng = worksheet.Cells.Find(textToFind, Type.Missing, Excel.XlFindLookIn.xlValues, Excel.XlLookAt.xlPart); //осуществляем поиск на листе
-
-        //    if (Rng != null)
-        //    {
-        //        //MessageBox.Show("Текст: '" + textToFind + "' найден в ячейке: " + Rng.Address, "Поиск", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //        Rng.Interior.Color = Excel.XlRgbColor.rgbGreenYellow;
-        //        workbook.SaveAs(labelPath2.Text, Excel.XlFileFormat.xlOpenXMLWorkbook, null, null, false, false, Excel.XlSaveAsAccessMode.xlShared, false, false, null, null, null);
-        //        Marshal.ReleaseComObject(Rng);
-        //    }
-
-        //    excelApp.Quit();
-        //    Marshal.ReleaseComObject(workbook);
-        //    Marshal.ReleaseComObject(worksheet);
-        //}
-
-
-        private void FindCode1(string code, string development)
+        private string RemoveR(string text)
         {
-            Excel.Application excelApp = new Excel.Application();
+            if (text[text.Length - 1] == '\r')
+            {
+                text = text.Remove(text.Length - 1);
+            }
+
+            return text;
+        }
+
+        private void FindCode(string textToFind)
+        {
+            Excel.Application excelApp = new Excel.Application(); //Excel                    
+            Excel.Range Rng; //диапазон ячеек
             Excel.Workbook workbook = excelApp.Workbooks.Open(labelPath2.Text);
             Excel.Worksheet worksheet = (Excel.Worksheet)workbook.Worksheets.get_Item(1);
 
-            bool isBreak = false;
-            var rowCount = workbook.Worksheets[1].Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Row;
-            for (int i = 1; i < rowCount; i++)
-            {
-                if (code.Equals(worksheet.Range[$"A{i}"].Value))
-                {
-                    if (development.Equals(worksheet.Range[$"B{i}"].Value))
-                    {
-                        worksheet.Range[$"A{i}"].Interior.Color = Excel.XlRgbColor.rgbYellow;
-                        workbook.SaveAs(labelPath2.Text, Excel.XlFileFormat.xlOpenXMLWorkbook, null, null, false, false, Excel.XlSaveAsAccessMode.xlShared, false, false, null, null, null);
-                    }
-                    break;
-                }
+            
 
+           
+            Rng = worksheet.Cells.Find(textToFind, Type.Missing, Excel.XlFindLookIn.xlValues, Excel.XlLookAt.xlPart, Excel.XlSearchOrder.xlByRows, Excel.XlSearchDirection.xlNext, false, Type.Missing, Type.Missing);//осуществляем поиск на лист
+            if (Rng != null)
+            {
+                Rng.Interior.Color = Excel.XlRgbColor.rgbGreenYellow;
+                workbook.SaveAs(labelPath2.Text, Excel.XlFileFormat.xlOpenXMLWorkbook, null, null, false, false, Excel.XlSaveAsAccessMode.xlShared, false, false, null, null, null);
+                Marshal.ReleaseComObject(Rng);
+                count += 1;
             }
 
             excelApp.Quit();
             Marshal.ReleaseComObject(workbook);
             Marshal.ReleaseComObject(worksheet);
         }
+
+
+       
 
     }
 }
