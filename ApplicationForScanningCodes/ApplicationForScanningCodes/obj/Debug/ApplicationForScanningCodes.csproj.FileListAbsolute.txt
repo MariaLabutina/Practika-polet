@@ -10,14 +10,6 @@ C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\obj\
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\obj\Debug\ApplicationForScanningCodes.pdb
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\obj\Debug\ApplicationForScanningCodes.CreateFile.resources
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\obj\Debug\ApplicationForScanningCodes.csproj.ResolveComReference.cache
-C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\libSkiaSharp.dylib
-C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\x86\libSkiaSharp.dll
-C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\x64\libSkiaSharp.dll
-C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\arm64\libSkiaSharp.dll
-C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\x64\libSkiaSharp.so
-C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\arm\libSkiaSharp.so
-C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\arm64\libSkiaSharp.so
-C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\musl-x64\libSkiaSharp.so
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\SkiaSharp.dll
 C:\Практика\ApplicationForScanningCodes\ApplicationForScanningCodes\bin\Debug\System.Buffers.dll
