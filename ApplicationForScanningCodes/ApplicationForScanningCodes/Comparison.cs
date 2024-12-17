@@ -122,7 +122,7 @@ namespace ApplicationForScanningCodes
             
 
            
-            Rng = worksheet.Cells.Find(textToFind, Type.Missing, Excel.XlFindLookIn.xlValues, Excel.XlLookAt.xlPart, Excel.XlSearchOrder.xlByRows, Excel.XlSearchDirection.xlNext, false, Type.Missing, Type.Missing);//осуществляем поиск на лист
+            Rng = worksheet.Cells.Find(textToFind);//осуществляем поиск на лист
             if (Rng != null)
             {
                 Rng.Interior.Color = Excel.XlRgbColor.rgbGreenYellow;
