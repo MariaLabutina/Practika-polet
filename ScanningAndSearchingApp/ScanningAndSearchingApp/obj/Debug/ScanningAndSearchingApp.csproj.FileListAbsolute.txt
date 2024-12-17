@@ -1,0 +1,11 @@
+C:\Практика\ScanningAndSearchingApp\ScanningAndSearchingApp\bin\Debug\ScanningAndSearchingApp.exe.config
+C:\Практика\ScanningAndSearchingApp\ScanningAndSearchingApp\bin\Debug\ScanningAndSearchingApp.exe
+C:\Практика\ScanningAndSearchingApp\ScanningAndSearchingApp\bin\Debug\ScanningAndSearchingApp.pdb
+C:\Практика\ScanningAndSearchingApp\ScanningAndSearchingApp\obj\Debug\ScanningAndSearchingApp.csproj.AssemblyReference.cache
+C:\Практика\ScanningAndSearchingApp\ScanningAndSearchingApp\obj\Debug\ScanningAndSearchingApp.Properties.Resources.resources
+C:\Практика\ScanningAndSearchingApp\ScanningAndSearchingApp\obj\Debug\ScanningAndSearchingApp.csproj.GenerateResource.cache
+C:\Практика\ScanningAndSearchingApp\ScanningAndSearchingApp\obj\Debug\ScanningAndSearchingApp.csproj.CoreCompileInputs.cache
+C:\Практика\ScanningAndSearchingApp\ScanningAndSearchingApp\obj\Debug\ScanningAndSearchingApp.exe
+C:\Практика\ScanningAndSearchingApp\ScanningAndSearchingApp\obj\Debug\ScanningAndSearchingApp.pdb
+C:\Практика\ScanningAndSearchingApp\ScanningAndSearchingApp\obj\Debug\ScanningAndSearchingApp.Main.resources
+C:\Практика\ScanningAndSearchingApp\ScanningAndSearchingApp\obj\Debug\ScanningAndSearchingApp.csproj.ResolveComReference.cache
